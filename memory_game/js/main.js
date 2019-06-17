@@ -25,6 +25,8 @@ cardImage: "images/king-of-diamonds.png"
 var cardsInPlay=[];
 
 function checkForMatch(){
+	this.setAttribute('src', cards[cardId].cardImage);
+
 	if(cardsInPlay.length === 2){
 		if(cardsInPlay[0] === cardsInPlay[1]){
 			alert("You Found A Match!");
@@ -36,8 +38,8 @@ function checkForMatch(){
 }
 
 
-function flipCard(cardId){
-
+function flipCard(){
+	var cardId = this.getAttribute("data-id");
 	console.log("User Flipped:" + cards[cardId].rank);
 	console.log("User Flipped:" + cards[cardId].suit);
 	console.log("User Flipped:" + cards[cardId].cardImage);
@@ -47,7 +49,17 @@ function flipCard(cardId){
 	checkForMatch();
 }
 
-flipCard(0);
+function createBoard(){
+	for(var i = 0; i < cards.length;i++){
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src',"images/back.png");
+		cardElement.setAttribute('data-id',i);
 
-flipCard(2);
+		cardElement.addEventListener('click', flipCard);
+
+		document.getElementById("game-board").appendChild(cardElement);
+	}
+}
+
+createBoard();
 
