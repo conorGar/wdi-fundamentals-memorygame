@@ -5,22 +5,28 @@ var cards = [
 
 var cardsInPlay=[];
 
+function checkForMatch(){
+	if(cardsInPlay.length === 2){
+		if(cardsInPlay[0] === cardsInPlay[1]){
+			alert("You Found A Match!");
+		}else{
+			alert("Sorry, try again!");
 
-var cardOne = cards[0];
-var cardTwo = cards[2];
-
-cardsInPlay.push(cardOne);
-
-console.log("User flipped " + cardOne);
-
-
-cardsInPlay.push(cardTwo);
-
-if(cardsInPlay.length === 2){
-	if(cardsInPlay[0] === cardsInPlay[1]){
-		alert("You Found A Match!");
-	}else{
-		alert("Sorry, try again!");
-
+		}
 	}
 }
+
+
+function flipCard(cardId){
+
+	console.log("User Flipped:" + cards[cardId]);
+
+	cardsInPlay.push(cards[cardId]);
+
+	checkForMatch();
+}
+
+flipCard(0);
+
+flipCard(2);
+
